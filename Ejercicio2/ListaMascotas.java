@@ -80,7 +80,7 @@ public class ListaMascotas {
     public NodoMascota buscarPorNombre(String nombre) {
         NodoMascota actual = primero;
         while (actual != null) {
-            if (actual.getNombre().equals(nombre)) {
+            if (actual.getNombre().equalsIgnoreCase(nombre)) {
                 return actual;
             }
             actual = actual.siguiente;

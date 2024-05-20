@@ -19,10 +19,10 @@ public class Main {
         String menuNovedades = Helpers.menuNovedades();
 
         //DECLARACION DE VARIABLES
-        int opcionPrincipal = 0, opcionGeneral = 0;
+        int opcionPrincipal = 0;
 
         do {
-            Helpers.print(menu);
+            Helpers.print("\n" + menu);
             Helpers.print("Digite su opción: ");
             opcionPrincipal = Integer.parseInt(kb.readLine());
 

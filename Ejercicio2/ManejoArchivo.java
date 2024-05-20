@@ -95,8 +95,19 @@ public class ManejoArchivo {
 
     public static void retirarAdopcion(String codigoMascota) {
         ListaMascotas lista = leerArchivoMascotas();
+
+
+        //Se añade validacion de que la mascota ya existe en huerfanito para no generar registros duplicados
+        NodoMascota controlador = lista.buscarPorCodigo(codigoMascota);
+
+        if (controlador != null) {
+            System.out.println("La mascota no se ha adoptado, verifique");
+            return;
+        }
+
+
         String nombreMascota = obtenerNombreMascotaDeNovedad(codigoMascota);
-        lista.insertar(new NodoMascota(codigoMascota,nombreMascota ));
+        lista.insertar(new NodoMascota(codigoMascota, nombreMascota));
         escribirArchivoMascotas(lista);
         escribirNovedad("Adopción retirada - Mascota: " + codigoMascota);
         System.out.println("Adopción retirada con éxito.");
