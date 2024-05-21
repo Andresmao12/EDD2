@@ -3,7 +3,7 @@ package Ejercicio1;
 import java.io.IOException;
 
 public class Lista {
- 
+
     public static Nodo cabeza, cola;
 
     static class Nodo {
@@ -181,7 +181,8 @@ public class Lista {
 
         while (aux != cabeza) {
             General.imprimir(
-                    "   " + cont + "." + aux.trabajador.getNombre() + "\t" + "Cedula: " + aux.trabajador.getCedula() + "\tSalario: $" + aux.trabajador.getSalario() ,
+                    "   " + cont + "." + aux.trabajador.getNombre() + "\t" + "Cedula: " + aux.trabajador.getCedula()
+                            + "\tSalario: $" + aux.trabajador.getSalario(),
                     true);
             aux = aux.siguiente;
             cont++;
@@ -221,36 +222,7 @@ public class Lista {
 
     }
 
-    public static void saldosPyN(String op) {
-
-        if (vacio()) {
-            General.imprimir("\n -- No se encuentran trabajadores registrados -- \n");
-            return;
-        }
-
-        Nodo aux = cabeza.siguiente;
-        int positivos = 0;
-        int negativos = 0;
-
-        while (aux != cabeza) {
-
-            if (aux.trabajador.getSalario() > 0)
-                positivos++;
-            else
-                negativos++;
-
-            aux = aux.siguiente;
-        }
-
-        if (op.equalsIgnoreCase("P")) {
-            General.imprimir("\n -- Trabajadores con saldo positivo: " + positivos);
-        } else if (op.equalsIgnoreCase("N")) {
-            General.imprimir("\n -- Trabajadores con saldo negativo: " + negativos);
-        }
-
-    }
-
-    public static void saldoMyM() {
+    public static void saldoMyM(String op) {
 
         if (vacio()) {
             General.imprimir("\n -- No se encuentran trabajadores registrados -- \n");
@@ -261,7 +233,6 @@ public class Lista {
         Trabajador saldoMayor = null;
         Trabajador saldoMenor = null;
         double sMayor = 0;
-        double sMenor = 0;
 
         while (aux != cabeza) {
 
@@ -270,29 +241,64 @@ public class Lista {
                 sMayor = aux.trabajador.getSalario();
                 saldoMayor = aux.trabajador;
 
-            } else if (aux.trabajador.getSalario() < sMenor) {
-
-                sMenor = aux.trabajador.getSalario();
-                saldoMenor = aux.trabajador;
             }
+            aux = aux.siguiente;
+        }
+
+        if (op.equalsIgnoreCase("MAYOR")) {
+
+            General.imprimir("\n-- El trabajador con mayor salario es: \n"
+                    + "\t Nombre: " + saldoMayor.getNombre()
+                    + "\t CC: " + saldoMayor.getCedula()
+                    + "\t Genero: " + saldoMayor.getGenero()
+                    + "\t Salario: " + saldoMayor.getSalario());
+
+        } else if (op.equalsIgnoreCase("MENOR")) {
+
+            aux = cabeza.siguiente;
+
+            while (aux != cabeza) {
+
+                if (aux.trabajador.getSalario() < sMayor) {
+
+                    sMayor = aux.trabajador.getSalario();
+                    saldoMenor = aux.trabajador;
+
+                }
+                aux = aux.siguiente;
+            }
+
+            General.imprimir("\n-- El trabajador con menor salario es: \n"
+                    + "\t Nombre: " + saldoMenor.getNombre()
+                    + "\t Salario: " + saldoMenor.getSalario());
+        }
+
+    }
+
+    public static void saldosPyN() {
+
+        if (vacio()) {
+            General.imprimir("\n -- No se encuentran trabajadores registrados -- \n");
+            return;
+        }
+
+        Nodo aux = cabeza.siguiente;
+        int positivos = 0;
+        int negativos = 0;
+        double prom = opSalarios(2);
+
+        while (aux != cabeza) {
+
+            if (aux.trabajador.getSalario() > prom)
+                positivos++;
+            else
+                negativos++;
 
             aux = aux.siguiente;
         }
 
-        General.imprimir("\n -- El trabajador con mayor salario es: " + saldoMayor.getNombre() + "\t Salario: "
-                + saldoMayor.getSalario());
-
-        General.imprimir("\n -- El trabajador con menor salario es: " + saldoMenor.getNombre() + "\t Salario: " + saldoMenor.getSalario());
-
-        // if (op.equalsIgnoreCase("MAYOR")) {
-        // General.imprimir("El trabajador con mayor salario es: " +
-        // saldoMayor.getNombre() + "\t Salario: "
-        // + saldoMayor.getSalario());
-        // } else if (op.equalsIgnoreCase("MENOR")) {
-        // General.imprimir("El trabajador con menor salario es: " +
-        // saldoMenor.getNombre() + "\t Salario: "
-        // + saldoMenor.getSalario());
-        // }
+        General.imprimir("\n -- Balance salarios -- \n\n-- Ganan mas que el promedio : " + positivos);
+        General.imprimir("-- Ganan menos que el promedio: " + negativos);
 
     }
 

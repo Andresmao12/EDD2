@@ -46,11 +46,11 @@ class ppal {
     public static void menuEstadisticas() throws IOException {
 
         String menuS = "Seleccione la opcion deseada: \n"
-                + "1.Suma de los salarios\n"
+                + "1.Nomina (Suma de los salarios)\n"
                 + "2.Salario promedio\n"
-                + "3.Cantidad con saldo negativo\n"
-                + "4.Cantidad con saldo positivo\n"
-                + "5.Salario mas alto y mas bajo\n"
+                + "3.Salario mas bajo\n"
+                + "4.Salario mas alto\n"
+                + "5.Cuantos ganan mas y menos del promedio\n"
                 + "0.Salir\n";
 
         String decisionS;
@@ -69,17 +69,14 @@ class ppal {
                     General.imprimir("El promedio de salarios es de $" + promNomina);
                     break;
                 case "3":
-                    Lista.saldosPyN("N");
+                    Lista.saldoMyM("Menor");
                     break;
                 case "4":
-                    Lista.saldosPyN("P");
+                    Lista.saldoMyM("Mayor");
                     break;
                 case "5":
-                    Lista.saldoMyM();
+                    Lista.saldosPyN();
                     break;
-                // case "6":
-                //     Lista.saldoMyM("menor");
-                //     break;
                 case "0":
                     General.imprimir("\nEntendible, hasta pronto...");
                     break;
