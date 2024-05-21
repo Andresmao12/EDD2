@@ -172,22 +172,45 @@ public class Lista {
             return;
         }
 
-        Nodo aux = cabeza.siguiente;
-        int cont = 1;
+        String decision = General
+                .leer("-- De que manera desea imprimir la lista: \n\t 1.Ascendentemente\n\t 2.Descendentemente", true);
 
-        // IMPRIMIR ASCENDENTE O DESCENDENTEMENTE?
+        if (decision.equals("1")) {
 
-        General.imprimir("--- TRABAJADORES ---", true);
+            Nodo aux = cabeza.siguiente;
+            int cont = 1;
 
-        while (aux != cabeza) {
-            General.imprimir(
-                    "   " + cont + "." + aux.trabajador.getNombre() + "\t" + "Cedula: " + aux.trabajador.getCedula()
-                            + "\tSalario: $" + aux.trabajador.getSalario(),
-                    true);
-            aux = aux.siguiente;
-            cont++;
+            General.imprimir("--- TRABAJADORES ---", true);
+
+            while (aux != cabeza) {
+                General.imprimir(
+                        "   " + cont + "." + aux.trabajador.getNombre() + "\t" + "Cedula: " + aux.trabajador.getCedula()
+                                + "\tSalario: $" + aux.trabajador.getSalario(),
+                        true);
+                aux = aux.siguiente;
+                cont++;
+            }
+
+        } else if (decision.equals("2")) {
+
+            Nodo aux = cola;
+            int cont = 1;
+
+            General.imprimir("--- TRABAJADORES ---", true);
+
+            while (aux != cabeza) {
+                General.imprimir(
+                        "   " + cont + "." + aux.trabajador.getNombre() + "\t" + "Cedula: " + aux.trabajador.getCedula()
+                                + "\tSalario: $" + aux.trabajador.getSalario(),
+                        true);
+                aux = aux.anterior;
+                cont++;
+            }
+
+        }else{
+            General.imprimir("Ingrese una opcion valida");
+            imprimir();
         }
-        ;
 
         General.imprimir("");
 
