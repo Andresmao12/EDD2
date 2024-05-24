@@ -122,12 +122,19 @@ public class Main {
             case 1:
                 Helpers.print("Ingrese el código de la mascota para realizar la adopción:");
                 String codigoAdopcion = kb.readLine();
-                ManejoArchivo.realizarAdopcion(codigoAdopcion);
+
+                
+                Helpers.print("Ingrese el nombre de la persona que realiza la adopcion:");
+                String titular = kb.readLine();
+
+                ManejoArchivo.realizarAdopcion(codigoAdopcion, titular);
                 break;
             case 2:
                 Helpers.print("Ingrese el código de la mascota para retirar la adopción:");
                 String codigoRetiro = kb.readLine();
-                ManejoArchivo.retirarAdopcion(codigoRetiro);
+                Helpers.print("Ingrese el nombre de la persona que retira la adopcion:");
+                String titularRetiro = kb.readLine();
+                ManejoArchivo.retirarAdopcion(codigoRetiro, titularRetiro);
                 break;
             case 3:
                 Helpers.print("Contenido del archivo de novedades:");

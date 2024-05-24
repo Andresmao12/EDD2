@@ -80,20 +80,20 @@ public class ManejoArchivo {
         System.out.println("Mascota agregada con éxito.");
     }
 
-    public static void realizarAdopcion(String codigoMascota) {
+    public static void realizarAdopcion(String codigoMascota, String titular) {
         ListaMascotas lista = leerArchivoMascotas();
         NodoMascota mascota = lista.buscarPorCodigo(codigoMascota);
         if (mascota != null) {
             lista.eliminar(codigoMascota);
             escribirArchivoMascotas(lista);
-            escribirNovedad("Adopción realizada - Mascota: " + mascota.getCodigo() + ", " + mascota.getNombre());
+            escribirNovedad("Adopción realizada - Mascota: " + mascota.getCodigo() + ", " + mascota.getNombre()+ ", " + titular);
             System.out.println("Adopción realizada con éxito.");
         } else {
             System.out.println("Mascota no encontrada.");
         }
     }
 
-    public static void retirarAdopcion(String codigoMascota) {
+    public static void retirarAdopcion(String codigoMascota, String titularRetiro) {
         ListaMascotas lista = leerArchivoMascotas();
 
         //Dos validaciones agregadas
@@ -121,7 +121,7 @@ public class ManejoArchivo {
         String nombreMascota = obtenerNombreMascotaDeNovedad(codigoMascota);
         lista.insertar(new NodoMascota(codigoMascota, nombreMascota));
         escribirArchivoMascotas(lista);
-        escribirNovedad("Adopción retirada - Mascota: " + codigoMascota);
+        escribirNovedad("Adopción retirada - Mascota: " + codigoMascota + " Entregado por: " + titularRetiro);
         System.out.println("Adopción retirada con éxito.");
     }
 
